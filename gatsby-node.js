@@ -1,3 +1,4 @@
+const path = require('path')
 const getDistance = require('./src/data-helpers/getDistance')
 const slugifyFieldResolver = require('./src/data-helpers/slugifyFieldResolver')
 
@@ -18,7 +19,7 @@ exports.sourceNodes = ({ actions }) => {
     }
     type ArtistsJson implements Node {
       name: String
-      comics: ComicsJson @link(by: "artist.name", from: "name")
+      comics: [ComicsJson] @link(by: "artist.name", from: "name")
       slug: String
     }
   `
@@ -58,6 +59,72 @@ exports.createResolvers = ({ createResolvers }) => {
       slug: {
         resolve: slugifyFieldResolver('name'),
       },
+    },
+  })
+}
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
+
+  const pages = await graphql(`
+    {
+      allComicsJson {
+        nodes {
+          slug
+          id
+        }
+      }
+      allArtistsJson {
+        nodes {
+          slug
+          id
+        }
+      }
+    }
+  `)
+
+  pages.data.allComicsJson.nodes.forEach((node) => {
+    createPage({
+      path: `/${node.slug}`,
+      component: path.resolve('src/templates/Comic.jsx'),
+      context: {
+        id: node.id,
+      },
+    })
+  })
+  pages.data.allArtistsJson.nodes.forEach((node) => {
+    createPage({
+      path: `/${node.slug}`,
+      component: path.resolve('src/templates/Artist.jsx'),
+      context: {
+        id: node.id,
+      },
+    })
+  })
+
+  const perPage = 1
+  const maxPages = pages.data.allComicsJson.nodes.length
+  for (let i = 0; i < maxPages; i += perPage) {
+    createPage({
+      path: `/${i + 1}`,
+      component: path.resolve('src/templates/Comics.jsx'),
+      context: {
+        skip: i,
+        limit: perPage,
+        backPage: i === 0 ? null : `/${i === 1 ? '' : i - 1}`,
+        nextPage: i + perPage < maxPages ? `/${i + 2}` : null,
+      },
+    })
+  }
+  // Create the index page.
+  createPage({
+    path: '/',
+    component: path.resolve('src/templates/Comics.jsx'),
+    context: {
+      skip: 0,
+      limit: perPage,
+      backPage: null,
+      nextPage: '/2',
     },
   })
 }
