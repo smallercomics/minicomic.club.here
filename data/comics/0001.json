@@ -1,0 +1,9 @@
+{
+  "artist": "An Person",
+  "title": "Beepoop 1",
+  "location": {
+    "title": "Foo",
+    "lat": -37.7431379,
+    "long": 144.9289317
+  }
+}
