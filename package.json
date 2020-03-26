@@ -16,6 +16,8 @@
   "license": "ISC",
   "devDependencies": {
     "gatsby-cli": "^2.11.2",
+    "gatsby-source-filesystem": "^2.2.2",
+    "gatsby-transformer-json": "^2.3.1",
     "prettier": "^2.0.2"
   },
   "dependencies": {
