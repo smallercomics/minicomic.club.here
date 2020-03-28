@@ -2,34 +2,29 @@ import React from 'react'
 
 import styled, { createGlobalStyle } from 'styled-components'
 
-import woff2 from '../../fonts/LeagueMono-Bold.woff2'
-import eot from '../../fonts/LeagueMono-Bold.eot'
-import woff from '../../fonts/LeagueMono-Bold.woff'
-
 const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'LeagueMono';
-    src: url('${woff2}') format('woff2'), /* Super Modern Browsers */
-         url('${woff}') format('woff'), /* Pretty Modern Browsers */
-         url('${eot}')  format('truetype'); /* Safari, Android, iOS */
-    font-weight: bold;
-    font-style: normal;
+  body, html{
+    height: 100%;
+  }
+  #___gatsby,
+  #gatsby-focus-wrapper{
+    height: 100%;
   }
   body{
     margin: 0;
     padding: 0;
-    border-top: 1rem solid grey;
-    padding-top: 1rem solid grey;
-  }
-  h1, h2, h3, h4, h5, h6{
-    font-family: LeagueMono;
-    margin:0;
-    padding:0;
   }
 `
 
+const Page = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  #main {
+    flex-grow: 1;
+  }
+`
 const SiteHeader = styled.p`
-  font-family: LeagueMono;
   margin: 0;
   padding: 0;
   font-size: 48px;
@@ -41,23 +36,27 @@ const InnerWrap = styled.div`
   margin: 0 auto;
 `
 
-const Footer = styled.footer`
-  border-top: 1rem solid lightGrey;
-  margin-top: 1rem;
-`
-const Page = ({ children }) => (
+const Section = styled.section``
+
+const PageLayout = ({ children }) => (
   <>
     <GlobalStyle />
-    <header>
-      <InnerWrap>
-        <SiteHeader>Here,</SiteHeader>
-      </InnerWrap>
-    </header>
-    <InnerWrap>{children}</InnerWrap>
-    <Footer>
-      <InnerWrap>A minicomic.club project</InnerWrap>
-    </Footer>
+    <Page>
+      <Section as="header">
+        <InnerWrap>
+          <SiteHeader>Here,</SiteHeader>
+        </InnerWrap>
+      </Section>
+      <Section id="main">
+        <InnerWrap>{children}</InnerWrap>
+      </Section>
+      <Section as="footer">
+        <InnerWrap>
+          <p>A minicomic.club project, all artwork &copy; respective artists</p>
+        </InnerWrap>
+      </Section>
+    </Page>
   </>
 )
 
-export default Page
+export default PageLayout

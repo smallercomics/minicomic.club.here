@@ -12,7 +12,9 @@ exports.sourceNodes = ({ actions }) => {
     }
     type ComicsJson implements Node {
       title: String
+      description: String
       artist: ArtistsJson @link(by: "name")
+      media: File @link(by: "relativePath")
       location: Location
       slug: String
       nearby: [ComicsJson]

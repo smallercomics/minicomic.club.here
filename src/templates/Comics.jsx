@@ -1,23 +1,21 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
+
+import Stack from '../components/layout/Stack'
+import ComicsList from '../components/comic/ComicsList'
+import BackNext from '../components/navigation/BackNext'
 
 const Comics = ({
   data: {
     allComicsJson: { nodes: comics },
   },
-  pageContext: { backPage, nextPage },
+  pageContext,
 }) => {
   return (
-    <>
-      <h1>Comics</h1>
-      {comics.map((comic) => (
-        <h2 key={comic.slug}>
-          <Link to={comic.slug}>{comic.title}</Link>
-        </h2>
-      ))}
-      {!!backPage && <Link to={`${backPage}`}>Back</Link>}
-      {!!nextPage && <Link to={`${nextPage}`}>Next</Link>}
-    </>
+    <Stack>
+      <ComicsList comics={comics} />
+      <BackNext {...pageContext} />
+    </Stack>
   )
 }
 
