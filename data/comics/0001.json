@@ -1,6 +1,8 @@
 {
   "artist": "An Person",
   "title": "Beepoop 1",
+  "description": "Here's my house",
+  "media": "images/0001.png",
   "location": {
     "title": "Foo",
     "lat": -37.7431379,

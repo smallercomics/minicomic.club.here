@@ -1,6 +1,8 @@
 {
   "artist": "An Person",
   "title": "Beepoop 3",
+  "media": "images/0003.png",
+  "description": "Love fell over",
   "location": {
     "title": "Baz",
     "lat": 37.7478941,
