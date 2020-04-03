@@ -1,3 +1,5 @@
+require('ts-node').register({ files: true })
+
 const path = require('path')
 const getDistance = require('./src/data-helpers/getDistance')
 const slugifyFieldResolver = require('./src/data-helpers/slugifyFieldResolver')
