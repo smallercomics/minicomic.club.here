@@ -7,6 +7,6 @@ const Wrap = styled.div`
   flex-direction: column;
 `
 
-const Stack = ({ children }) => <Wrap>{children}</Wrap>
+const Stack = ({ children, ...props }) => <Wrap {...props}>{children}</Wrap>
 
 export default Stack
