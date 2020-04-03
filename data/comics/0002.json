@@ -1,0 +1,11 @@
+{
+  "artist": "An Person",
+  "title": "Beepoop 2",
+  "media": "images/0002.png",
+  "description": "Spacewar",
+  "location": {
+    "title": "Bar",
+    "lat": -37.7478941,
+    "long": 144.9422632
+  }
+}
