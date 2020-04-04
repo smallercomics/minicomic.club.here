@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 
 import styled from 'styled-components'
 
@@ -7,6 +7,6 @@ const Wrap = styled.div`
   flex-direction: row;
 `
 
-const Row = ({ children }) => <Wrap>{children}</Wrap>
+const Row: FunctionComponent = ({ children }) => <Wrap>{children}</Wrap>
 
 export default Row

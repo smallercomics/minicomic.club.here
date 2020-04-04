@@ -1,7 +1,21 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 
-const Artist = ({ data: { artistsJson: artist } }) => {
+interface ArtistPageProps {
+  data: {
+    artistsJson: {
+      name: string
+      comics: [
+        {
+          slug: string
+          title: string
+        }
+      ]
+    }
+  }
+}
+
+const ArtistPage = ({ data: { artistsJson: artist } }: ArtistPageProps) => {
   return (
     <>
       <h1>{artist.name}</h1>
@@ -26,4 +40,4 @@ export const pageQuery = graphql`
   }
 `
 
-export default Artist
+export default ArtistPage

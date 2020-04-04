@@ -1,5 +1,8 @@
+require('ts-node').register({ files: true })
+
 module.exports = {
   plugins: [
+    'gatsby-plugin-typescript',
     'gatsby-plugin-styled-components',
     'gatsby-transformer-json',
     {
@@ -11,7 +14,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-layout',
       options: {
-        component: require.resolve('./src/components/layout/Page.jsx'),
+        component: require.resolve('./src/components/layout/Page.tsx'),
       },
     },
   ],
