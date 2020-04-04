@@ -62,6 +62,23 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
   
+  h1{
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+  h3{
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+  p,li{
+    line-height: 16px;
+    font-size: 14px;
+  }
+  ul{
+    margin-bottom: 16px;
+  }
 `
 
 const Page = styled(Stack)`
@@ -75,7 +92,20 @@ const InnerWrap = styled.div`
   margin: 0 auto;
 `
 
+const Home = styled(Link)`
+  display: inline-block;
+  margin: 16px 0;
+  line-height: 32px;
+  text-decoration: none;
+  color: black;
+  img {
+    height: 32px;
+    vertical-align: sub;
+  }
+`
 const Section = styled.section``
+
+import Pin from './pin.png'
 
 const PageLayout: FunctionComponent = ({ children }) => (
   <>
@@ -83,9 +113,9 @@ const PageLayout: FunctionComponent = ({ children }) => (
     <Page>
       <Section as="header">
         <InnerWrap>
-          <p>
-            <Link to="/">Here</Link>
-          </p>
+          <Home to="/">
+            <img src={Pin} alt="" /> Here
+          </Home>
         </InnerWrap>
       </Section>
       <Section id="main">
