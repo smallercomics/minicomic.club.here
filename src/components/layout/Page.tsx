@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import styled, { createGlobalStyle } from 'styled-components'
 
 import Stack from './Stack'
+import ComicMedia from '../comic/ComicMedia'
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -64,8 +65,9 @@ const GlobalStyle = createGlobalStyle`
   
   h1{
     font-size: 20px;
-    line-height: 24px;
+    line-height: 32px;
     margin-bottom: 8px;
+    margin-top: 16px;
   }
   h3{
     font-size: 18px;
@@ -87,10 +89,6 @@ const Page = styled(Stack)`
     flex-grow: 1;
   }
 `
-const InnerWrap = styled.div`
-  max-width: 600px;
-  margin: 0 auto;
-`
 
 const Home = styled(Link)`
   display: inline-block;
@@ -103,6 +101,22 @@ const Home = styled(Link)`
     vertical-align: sub;
   }
 `
+
+const InnerWrap = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  @media (max-width: 1200px) {
+    h1,
+    h3,
+    p,
+    ul,
+    ${Home} {
+      padding-left: 16px;
+    }
+  }
+`
+
 const Section = styled.section``
 
 import Pin from './pin.png'
