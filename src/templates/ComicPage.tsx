@@ -48,7 +48,11 @@ export const pageQuery = graphql`
       title
       description
       media {
-        publicURL
+        childImageSharp {
+          fluid(maxWidth: 1200) {
+            ...GatsbyImageSharpFluid
+          }
+        }
       }
       slug
       artist {

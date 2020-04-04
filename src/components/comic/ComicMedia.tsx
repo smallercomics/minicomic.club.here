@@ -1,13 +1,16 @@
 import React from 'react'
+import Img from 'gatsby-image'
 
 interface ComicMediaProps {
   alt: string
   media: {
-    publicURL: string
+    childImageSharp: {
+      fluid?: any
+    }
   }
 }
 const ComicMedia = ({ media, alt }: ComicMediaProps) => (
-  <img alt={alt} src={media.publicURL} />
+  <Img alt={alt} fluid={media.childImageSharp.fluid} />
 )
 
 export default ComicMedia
