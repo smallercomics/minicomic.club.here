@@ -6,7 +6,33 @@ import Stack from '../components/layout/Stack'
 import ComicSingle from '../components/comic/ComicSingle'
 import ComicsList from '../components/comic/ComicsList'
 
-const Comic = ({ data: { comicsJson: comic } }) => (
+interface ComicPageProps {
+  data: {
+    comicsJson: {
+      title: string
+      description: string
+      media: {
+        publicURL: string
+      }
+      slug: string
+      artist: {
+        name: string
+        slug: string
+      }
+      location: {
+        title: string
+      }
+      nearby: [
+        {
+          title: string
+          slug: string
+        }
+      ]
+    }
+  }
+}
+
+const ComicPage = ({ data: { comicsJson: comic } }: ComicPageProps) => (
   <Stack>
     <ComicSingle comic={comic} />
     <h3>
@@ -40,4 +66,4 @@ export const pageQuery = graphql`
   }
 `
 
-export default Comic
+export default ComicPage

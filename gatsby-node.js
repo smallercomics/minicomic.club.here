@@ -90,7 +90,7 @@ exports.createPages = async ({ graphql, actions }) => {
   pages.data.allComicsJson.nodes.forEach((node) => {
     createPage({
       path: `/${node.slug}`,
-      component: path.resolve('src/templates/Comic.jsx'),
+      component: path.resolve('src/templates/ComicPage.tsx'),
       context: {
         id: node.id,
       },
@@ -99,19 +99,19 @@ exports.createPages = async ({ graphql, actions }) => {
   pages.data.allArtistsJson.nodes.forEach((node) => {
     createPage({
       path: `/${node.slug}`,
-      component: path.resolve('src/templates/Artist.jsx'),
+      component: path.resolve('src/templates/ArtistPage.tsx'),
       context: {
         id: node.id,
       },
     })
   })
 
-  const perPage = 1
+  const perPage = 5
   const maxPages = pages.data.allComicsJson.nodes.length
   for (let i = 0; i < maxPages; i += perPage) {
     createPage({
       path: `/${i + 1}`,
-      component: path.resolve('src/templates/Comics.jsx'),
+      component: path.resolve('src/templates/ComicsPage.tsx'),
       context: {
         skip: i,
         limit: perPage,
@@ -123,7 +123,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create the index page.
   createPage({
     path: '/',
-    component: path.resolve('src/templates/Comics.jsx'),
+    component: path.resolve('src/templates/ComicsPage.tsx'),
     context: {
       skip: 0,
       limit: perPage,

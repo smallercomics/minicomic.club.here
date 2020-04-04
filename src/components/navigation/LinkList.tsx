@@ -1,7 +1,16 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-const LinkList = ({ links }) => (
+export interface LinkListItem {
+  slug: string
+  title: string
+}
+
+interface LinkListProps {
+  links: LinkListItem[]
+}
+
+const LinkList = ({ links }: LinkListProps) => (
   <ul>
     {links.map(({ slug, title }) => (
       <li>

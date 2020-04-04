@@ -5,12 +5,29 @@ import Stack from '../components/layout/Stack'
 import ComicsList from '../components/comic/ComicsList'
 import BackNext from '../components/navigation/BackNext'
 
-const Comics = ({
+interface ComicsPageProps {
+  data: {
+    allComicsJson: {
+      nodes: [
+        {
+          slug: string
+          title: string
+        }
+      ]
+    }
+  }
+  pageContext: {
+    backPage: string
+    nextPage: string
+  }
+}
+
+const ComicsPage = ({
   data: {
     allComicsJson: { nodes: comics },
   },
   pageContext,
-}) => {
+}: ComicsPageProps) => {
   return (
     <Stack>
       <ComicsList comics={comics} />
@@ -34,4 +51,4 @@ export const pageQuery = graphql`
   }
 `
 
-export default Comics
+export default ComicsPage

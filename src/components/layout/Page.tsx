@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { Link } from 'gatsby'
 import styled, { createGlobalStyle } from 'styled-components'
 
-import Stack from '../layout/Stack'
+import Stack from './Stack'
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -77,7 +77,7 @@ const InnerWrap = styled.div`
 
 const Section = styled.section``
 
-const PageLayout = ({ children }) => (
+const PageLayout: FunctionComponent = ({ children }) => (
   <>
     <GlobalStyle />
     <Page>
