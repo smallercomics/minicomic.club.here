@@ -128,7 +128,7 @@ exports.createPages = async ({ graphql, actions }) => {
       skip: 0,
       limit: perPage,
       backPage: null,
-      nextPage: '/2',
+      nextPage: maxPages > perPage ? '/2' : null,
     },
   })
 }

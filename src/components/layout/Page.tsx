@@ -2,8 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { Link } from 'gatsby'
 import styled, { createGlobalStyle } from 'styled-components'
 
-import Stack from './Stack'
-import ComicMedia from '../comic/ComicMedia'
+import Stack, { StackWithMobilePadding } from './Stack'
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -67,19 +66,29 @@ const GlobalStyle = createGlobalStyle`
     font-size: 20px;
     line-height: 32px;
     margin-bottom: 8px;
-    margin-top: 16px;
+    margin-top: 8px;
+  }
+  h2{
+    font-size: 18px;
+    line-height: 32px;
+    margin-bottom: 10px;
+    margin-top: 6px;
   }
   h3{
     font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 8px;
+    line-height: 28px;
+    margin-bottom: 20px;
   }
   p,li{
     line-height: 16px;
     font-size: 14px;
+    margin-bottom: 8px;
   }
   ul{
     margin-bottom: 16px;
+  }
+  em{
+    font-style: italic;
   }
 `
 
@@ -100,21 +109,15 @@ const Home = styled(Link)`
     height: 32px;
     vertical-align: sub;
   }
+  @media (max-width: 1200px) {
+    padding-left: 16px;
+  }
 `
 
 const InnerWrap = styled.div`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  @media (max-width: 1200px) {
-    h1,
-    h3,
-    p,
-    ul,
-    ${Home} {
-      padding-left: 16px;
-    }
-  }
 `
 
 const Section = styled.section``
@@ -137,11 +140,15 @@ const PageLayout: FunctionComponent = ({ children }) => (
       </Section>
       <Section as="footer">
         <InnerWrap>
-          <p>
-            We'd love to see where you are -{' '}
-            <Link to="/send">send us one?</Link>
-          </p>
-          <p>A minicomic.club project, all artwork &copy; respective artists</p>
+          <StackWithMobilePadding>
+            <p>
+              We'd love to see where you are -{' '}
+              <Link to="/send">send us one?</Link>
+            </p>
+            <p>
+              A minicomic.club project, all artwork &copy; respective artists
+            </p>
+          </StackWithMobilePadding>
         </InnerWrap>
       </Section>
     </Page>
