@@ -46,7 +46,7 @@ export const pageQuery = graphql`
   query Comics($skip: Int!, $limit: Int!) {
     allComicsJson(
       limit: $limit
-      sort: { order: ASC, fields: slug }
+      sort: { order: DESC, fields: posted }
       skip: $skip
     ) {
       nodes {

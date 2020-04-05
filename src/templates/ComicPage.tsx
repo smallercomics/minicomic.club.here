@@ -11,6 +11,7 @@ interface ComicPageProps {
     comicsJson: {
       title: string
       description: string
+      posted: string
       media: {
         publicURL: string
       }
@@ -49,6 +50,7 @@ export const pageQuery = graphql`
     comicsJson(id: { eq: $id }) {
       title
       description
+      posted(formatString: "DD MMMM YYYY")
       media {
         childImageSharp {
           fluid(maxWidth: 1200) {

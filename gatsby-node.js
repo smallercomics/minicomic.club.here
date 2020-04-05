@@ -16,6 +16,7 @@ exports.sourceNodes = ({ actions }) => {
       title: String
       description: String
       artist: ArtistsJson @link(by: "name")
+      posted: Date
       media: File @link(by: "relativePath")
       location: Location
       slug: String
@@ -72,10 +73,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const pages = await graphql(`
     {
-      allComicsJson {
+      allComicsJson(sort: { fields: posted, order: DESC }) {
         nodes {
           slug
           id
+          posted
         }
       }
       allArtistsJson {

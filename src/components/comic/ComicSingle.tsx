@@ -9,6 +9,7 @@ export interface ComicSingleProps {
   comic: {
     title: string
     description: string
+    posted: string
     media: {
       publicURL: string
     }
@@ -23,7 +24,7 @@ export interface ComicSingleProps {
 }
 
 const ComicSingle = ({ comic }: ComicSingleProps) => {
-  const { artist, title, media, description, location } = comic
+  const { artist, title, media, description, location, posted } = comic
   return (
     <Stack>
       <ComicMedia media={media} alt={description} />
@@ -31,6 +32,7 @@ const ComicSingle = ({ comic }: ComicSingleProps) => {
         <h1>
           <em>{title}</em>
         </h1>
+        <p>{posted}</p>
         <p>{description}</p>
         <p>
           {artist.name} is in <em>{location.title}</em>
