@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Stack from '../components/layout/Stack'
+import Stack, { StackWithMobilePadding } from '../components/layout/Stack'
 
 import ComicSingle from '../components/comic/ComicSingle'
 import ComicsList from '../components/comic/ComicsList'
@@ -36,10 +36,12 @@ interface ComicPageProps {
 const ComicPage = ({ data: { comicsJson: comic } }: ComicPageProps) => (
   <Stack>
     <ComicSingle comic={comic} />
-    <h3>
-      Near<em>ish</em>
-    </h3>
-    <ComicsList comics={comic.nearby} />
+    <StackWithMobilePadding paddingTop="24px">
+      <h3>
+        Near<em>ish</em>
+      </h3>
+      <ComicsList comics={comic.nearby} />
+    </StackWithMobilePadding>
   </Stack>
 )
 

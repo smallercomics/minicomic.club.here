@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import Stack from '../layout/Stack'
+import Stack, { StackWithMobilePadding } from '../layout/Stack'
 
 import ComicMedia from './ComicMedia'
 
@@ -28,13 +28,16 @@ const ComicSingle = ({ comic }: ComicSingleProps) => {
   return (
     <Stack>
       <ComicMedia media={media} alt={description} />
-      <h1>{title}</h1>
-      <p>{posted}</p>
-      <p>{description}</p>
-      <p>
-        <Link to={artist.slug}>{artist.name}</Link> is in{' '}
-        <em>{location.title}</em>
-      </p>
+      <StackWithMobilePadding>
+        <h1>
+          <em>{title}</em>
+        </h1>
+        <p>{posted}</p>
+        <p>{description}</p>
+        <p>
+          {artist.name} is in <em>{location.title}</em>
+        </p>
+      </StackWithMobilePadding>
     </Stack>
   )
 }

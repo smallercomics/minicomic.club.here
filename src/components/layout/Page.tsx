@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { Link } from 'gatsby'
 import styled, { createGlobalStyle } from 'styled-components'
 
-import Stack from './Stack'
+import Stack, { StackWithMobilePadding } from './Stack'
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -62,6 +62,34 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
   
+  h1{
+    font-size: 20px;
+    line-height: 32px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+  h2{
+    font-size: 18px;
+    line-height: 32px;
+    margin-bottom: 10px;
+    margin-top: 6px;
+  }
+  h3{
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 20px;
+  }
+  p,li{
+    line-height: 16px;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  ul{
+    margin-bottom: 16px;
+  }
+  em{
+    font-style: italic;
+  }
 `
 
 const Page = styled(Stack)`
@@ -70,12 +98,31 @@ const Page = styled(Stack)`
     flex-grow: 1;
   }
 `
+
+const Home = styled(Link)`
+  display: inline-block;
+  margin: 16px 0;
+  line-height: 32px;
+  text-decoration: none;
+  color: black;
+  img {
+    height: 32px;
+    vertical-align: sub;
+  }
+  @media (max-width: 1200px) {
+    padding-left: 16px;
+  }
+`
+
 const InnerWrap = styled.div`
-  max-width: 600px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
 `
 
 const Section = styled.section``
+
+import Pin from './pin.png'
 
 const PageLayout: FunctionComponent = ({ children }) => (
   <>
@@ -83,9 +130,9 @@ const PageLayout: FunctionComponent = ({ children }) => (
     <Page>
       <Section as="header">
         <InnerWrap>
-          <p>
-            <Link to="/">Here</Link>
-          </p>
+          <Home to="/">
+            <img src={Pin} alt="" /> Here
+          </Home>
         </InnerWrap>
       </Section>
       <Section id="main">
@@ -93,11 +140,15 @@ const PageLayout: FunctionComponent = ({ children }) => (
       </Section>
       <Section as="footer">
         <InnerWrap>
-          <p>
-            We'd love to see where you are -{' '}
-            <Link to="/send">send us one?</Link>
-          </p>
-          <p>A minicomic.club project, all artwork &copy; respective artists</p>
+          <StackWithMobilePadding>
+            <p>
+              We'd love to see where you are -{' '}
+              <Link to="/send">send us one?</Link>
+            </p>
+            <p>
+              A minicomic.club project, all artwork &copy; respective artists
+            </p>
+          </StackWithMobilePadding>
         </InnerWrap>
       </Section>
     </Page>
