@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Stack from '../components/layout/Stack'
-import ComicsList from '../components/comic/ComicsList'
+import ComicsGrid from '../components/comic/ComicsGrid'
 import BackNext from '../components/navigation/BackNext'
 
 interface ComicsPageProps {
@@ -12,6 +12,12 @@ interface ComicsPageProps {
         {
           slug: string
           title: string
+          artist: {
+            name: string
+          }
+          media: {
+            childImageSharp: any
+          }
         }
       ]
     }
@@ -30,7 +36,7 @@ const ComicsPage = ({
 }: ComicsPageProps) => {
   return (
     <Stack>
-      <ComicsList comics={comics} />
+      <ComicsGrid comics={comics} />
       <BackNext {...pageContext} />
     </Stack>
   )
@@ -46,6 +52,16 @@ export const pageQuery = graphql`
       nodes {
         title
         slug
+        artist {
+          name
+        }
+        media {
+          childImageSharp {
+            fluid(maxWidth: 600) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }
