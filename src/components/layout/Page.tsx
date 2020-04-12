@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react'
-import { Link } from 'gatsby'
+
 import styled, { createGlobalStyle } from 'styled-components'
 
 import Stack, { StackWithMobilePadding } from './Stack'
+import { H1, A, S, LINK } from '../typography'
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -62,31 +63,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
   
-  h1{
-    font-size: 20px;
-    line-height: 32px;
-    margin-bottom: 8px;
-    margin-top: 8px;
-  }
-  h2{
-    font-size: 18px;
-    line-height: 32px;
-    margin-bottom: 10px;
-    margin-top: 6px;
-  }
-  h3{
-    font-size: 18px;
-    line-height: 28px;
-    margin-bottom: 20px;
-  }
-  p,li{
-    line-height: 16px;
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-  ul{
-    margin-bottom: 16px;
-  }
+  
   em{
     font-style: italic;
   }
@@ -99,18 +76,18 @@ const Page = styled(Stack)`
   }
 `
 
-const Home = styled(Link)`
+const Home = styled(LINK)`
   display: inline-block;
-  margin: 16px 0;
-  line-height: 32px;
+  margin: 0.5rem 0 1rem 0;
   text-decoration: none;
   color: black;
-  img {
-    height: 32px;
-    vertical-align: sub;
+  span {
+    font-size: 1.8rem;
   }
-  @media (max-width: 1200px) {
-    padding-left: 16px;
+  img {
+    height: 2.25rem;
+    margin-right: 1rem;
+    vertical-align: baseline;
   }
 `
 
@@ -130,9 +107,13 @@ const PageLayout: FunctionComponent = ({ children }) => (
     <Page>
       <Section as="header">
         <InnerWrap>
-          <Home to="/">
-            <img src={Pin} alt="" /> Here
-          </Home>
+          <StackWithMobilePadding>
+            <Home to="/" title="Here">
+              <H1 as="span">
+                <img src={Pin} alt="" />
+              </H1>
+            </Home>
+          </StackWithMobilePadding>
         </InnerWrap>
       </Section>
       <Section id="main">
@@ -140,14 +121,14 @@ const PageLayout: FunctionComponent = ({ children }) => (
       </Section>
       <Section as="footer">
         <InnerWrap>
-          <StackWithMobilePadding>
-            <p>
+          <StackWithMobilePadding paddingTop="3rem" paddingBottom="1.5rem">
+            <S>
               We'd love to see where you are -{' '}
-              <Link to="/send">send us one?</Link>
-            </p>
-            <p>
+              <LINK to="/send">send us one?</LINK>
+            </S>
+            <S>
               A minicomic.club project, all artwork &copy; respective artists
-            </p>
+            </S>
           </StackWithMobilePadding>
         </InnerWrap>
       </Section>

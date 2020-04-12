@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
+import { H3 } from '../typography'
+
 import ComicMedia from './ComicMedia'
 
 import Row from '../layout/Row'
@@ -31,8 +33,9 @@ const Ul = styled(Row)`
     color: black;
     text-decoration: none;
   }
+
   @media (max-width: 1200px) {
-    h2 {
+    ${H3} {
       padding-left: 16px;
     }
   }
@@ -50,12 +53,12 @@ const ComicsGrid = ({ comics }: ComicsListProps) => {
   return (
     <Ul as="ul">
       {comics.map((c) => (
-        <li>
-          <Link to={c.slug}>
+        <li key={c.slug}>
+          <Link to={`/${c.slug}`}>
             {c.media && <ComicMedia alt={c.title} media={c.media} />}
-            <h2>
-              <em>{c.title}</em> {c.artist.name}
-            </h2>
+            <H3>
+              <em>{c.title}</em> &mdash; {c.artist.name}
+            </H3>
           </Link>
         </li>
       ))}

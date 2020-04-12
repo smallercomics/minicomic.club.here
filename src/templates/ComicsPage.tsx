@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Stack from '../components/layout/Stack'
 import ComicsGrid from '../components/comic/ComicsGrid'
 import BackNext from '../components/navigation/BackNext'
+import HeadMeta from '../components/headMeta'
 
 interface ComicsPageProps {
   data: {
@@ -28,14 +29,15 @@ interface ComicsPageProps {
   }
 }
 
-const ComicsPage = ({
+const ComicsPage: React.FunctionComponent<ComicsPageProps> = ({
   data: {
     allComicsJson: { nodes: comics },
   },
   pageContext,
-}: ComicsPageProps) => {
+}) => {
   return (
     <Stack>
+      <HeadMeta />
       <ComicsGrid comics={comics} />
       <BackNext {...pageContext} />
     </Stack>

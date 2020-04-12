@@ -1,5 +1,6 @@
 require('ts-node').register({ files: true })
 
+const fs = require('fs')
 const path = require('path')
 const getDistance = require('./src/data-helpers/getDistance')
 const slugifyFieldResolver = require('./src/data-helpers/slugifyFieldResolver')
@@ -22,10 +23,15 @@ exports.sourceNodes = ({ actions }) => {
       slug: String
       nearby: [ComicsJson]
     }
+    type ArtistLink {
+      id: String
+      kind: String
+    }
     type ArtistsJson implements Node {
       name: String
       comics: [ComicsJson] @link(by: "artist.name", from: "name")
       slug: String
+      links: [ArtistLink]
     }
   `
   createTypes(typeDefs)
@@ -133,4 +139,15 @@ exports.createPages = async ({ graphql, actions }) => {
       nextPage: maxPages > perPage ? '/2' : null,
     },
   })
+}
+
+exports.onPostBootstrap = async () => {
+  const publicFiles = fs.readdirSync(path.resolve('src/public'))
+
+  publicFiles.map((f) =>
+    fs.copyFileSync(
+      path.resolve(`src/public/${f}`),
+      path.resolve(`public/${f}`)
+    )
+  )
 }

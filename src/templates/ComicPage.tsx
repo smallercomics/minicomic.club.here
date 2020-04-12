@@ -2,9 +2,13 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Stack, { StackWithMobilePadding } from '../components/layout/Stack'
+import { H2 } from '../components/typography'
 
 import ComicSingle from '../components/comic/ComicSingle'
 import ComicsList from '../components/comic/ComicsList'
+import ArtistLinks, {
+  ArtistLinkInterface,
+} from '../components/navigation/ArtistLinks'
 
 interface ComicPageProps {
   data: {
@@ -19,6 +23,7 @@ interface ComicPageProps {
       artist: {
         name: string
         slug: string
+        links: ArtistLinkInterface[]
       }
       location: {
         title: string
@@ -34,12 +39,17 @@ interface ComicPageProps {
 }
 
 const ComicPage = ({ data: { comicsJson: comic } }: ComicPageProps) => (
-  <Stack>
+  <Stack as="article">
     <ComicSingle comic={comic} />
-    <StackWithMobilePadding paddingTop="24px">
-      <h3>
-        Near<em>ish</em>
-      </h3>
+    {comic.artist.links && (
+      <StackWithMobilePadding>
+        <ArtistLinks links={comic.artist.links} />
+      </StackWithMobilePadding>
+    )}
+    <StackWithMobilePadding paddingTop="1.5rem">
+      <H2>
+        Near<em>ish</em> to here:
+      </H2>
       <ComicsList comics={comic.nearby} />
     </StackWithMobilePadding>
   </Stack>
@@ -50,7 +60,7 @@ export const pageQuery = graphql`
     comicsJson(id: { eq: $id }) {
       title
       description
-      posted(formatString: "DD MMMM YYYY")
+      posted(formatString: "D MMMM YYYY")
       media {
         childImageSharp {
           fluid(maxWidth: 1200) {
@@ -62,6 +72,10 @@ export const pageQuery = graphql`
       artist {
         name
         slug
+        links {
+          kind
+          id
+        }
       }
       location {
         title

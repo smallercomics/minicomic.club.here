@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
+
+import { UL, LI, LINK } from '../typography'
 
 export interface LinkListItem {
   slug: string
@@ -11,13 +12,13 @@ interface LinkListProps {
 }
 
 const LinkList = ({ links }: LinkListProps) => (
-  <ul>
+  <UL>
     {links.map(({ slug, title }) => (
-      <li>
-        <Link to={slug}>{title}</Link>
-      </li>
+      <LI key={slug}>
+        <LINK to={`/${slug}`}>{title}</LINK>
+      </LI>
     ))}
-  </ul>
+  </UL>
 )
 
 export default LinkList
