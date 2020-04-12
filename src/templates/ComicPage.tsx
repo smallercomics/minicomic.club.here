@@ -1,6 +1,8 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
+import HeadMeta from '../components/headMeta'
+
 import Stack, { StackWithMobilePadding } from '../components/layout/Stack'
 import { H2 } from '../components/typography'
 
@@ -40,6 +42,11 @@ interface ComicPageProps {
 
 const ComicPage = ({ data: { comicsJson: comic } }: ComicPageProps) => (
   <Stack as="article">
+    <HeadMeta
+      title={comic.title}
+      description={comic.description}
+      url={comic.slug}
+    />
     <ComicSingle comic={comic} />
     {comic.artist.links && (
       <StackWithMobilePadding>

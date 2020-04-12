@@ -41,8 +41,10 @@ const HeadMeta: React.FunctionComponent<HeadMetaProps> = ({
     <Helmet
       defer={false}
       defaultTitle={defaultTitle}
-      titleTemplate={`%s | ${title}`}
+      titleTemplate={`%s | ${defaultTitle}`}
     >
+      <html lang="en" />
+      <title>{title}</title>
       <link
         rel="apple-touch-icon"
         sizes="180x180"
@@ -69,7 +71,8 @@ const HeadMeta: React.FunctionComponent<HeadMetaProps> = ({
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
 
-      <meta property="og:url" content={url || siteUrl} />
+      <meta name="description" content={description || defaultDescription} />
+      <meta property="og:url" content={`${siteUrl}/${url}` || siteUrl} />
       <meta property="og:title" content={title || defaultTitle} />
       <meta
         property="og:description"
