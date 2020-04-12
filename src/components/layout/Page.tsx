@@ -3,7 +3,7 @@ import React, { FunctionComponent } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 
 import Stack, { StackWithMobilePadding } from './Stack'
-import { H1, A, S, LINK } from '../typography'
+import { H1, A, S, P, LINK, UL, LI } from '../typography'
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -99,6 +99,19 @@ const InnerWrap = styled.div`
 
 const Section = styled.section``
 
+const StyledFooterSection = styled.section`
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+`
+
+const FooterNav = styled.nav`
+  ${UL} {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+  }
+`
 import Pin from './pin.png'
 
 const PageLayout: FunctionComponent = ({ children }) => (
@@ -119,19 +132,35 @@ const PageLayout: FunctionComponent = ({ children }) => (
       <Section id="main">
         <InnerWrap>{children}</InnerWrap>
       </Section>
-      <Section as="footer">
+      <StyledFooterSection as="footer">
         <InnerWrap>
-          <StackWithMobilePadding paddingTop="3rem" paddingBottom="1.5rem">
+          <StackWithMobilePadding paddingTop="2rem" paddingBottom="1.5rem">
+            <FooterNav>
+              <UL>
+                <LI aria-hidden="true">See&nbsp;</LI>
+                <LI>
+                  <LINK to="/map" aria-label="See everthing on a map">
+                    everything on a map
+                  </LINK>
+                </LI>
+                <LI aria-hidden="true">, or see&nbsp;</LI>
+                <LI>
+                  <LINK to="/" aria-label="See everthing in a list">
+                    everything in a list
+                  </LINK>
+                </LI>
+              </UL>
+            </FooterNav>
+            <P>
+              We'd love to see where <em>you</em> are -{' '}
+              <LINK to="/send">send us a comic?</LINK>
+            </P>
             <S>
-              We'd love to see where you are -{' '}
-              <LINK to="/send">send us one?</LINK>
-            </S>
-            <S>
-              A minicomic.club project, all artwork &copy; respective artists
+              A minicomic.club project, all artwork &copy; respective artists.
             </S>
           </StackWithMobilePadding>
         </InnerWrap>
-      </Section>
+      </StyledFooterSection>
     </Page>
   </>
 )
