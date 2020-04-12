@@ -1,0 +1,13 @@
+{
+  "artist": "Andrew Fulton",
+  "title": "Hammock under the deck",
+  "description": "This was when this felt like a holiday. Remember planes?",
+  "posted": "2020-04-04",
+  "media": "images/andrew-fulton-deck-hammock.jpeg",
+  "location": {
+    "title": "Pascoe Vale South",
+    "lat": -37.7431379,
+    "long": 144.9289317,
+    "mapslink": "https://www.google.com.au/maps/place/Pascoe+Vale+South+VIC+3044/@-37.7431379,144.9289317,15z/data=!3m1!4b1!4m5!3m4!1s0x6ad65b680d990ccf:0x5045675218cd440!8m2!3d-37.7457735!4d144.9384576"
+  }
+}
