@@ -142,7 +142,10 @@ exports.createPages = async ({ graphql, actions }) => {
 }
 
 exports.onPostBootstrap = async () => {
-  const publicFiles = fs.readdirSync(path.resolve('src/public'))
+  console.log('ROOT', process.env.GITHUB_WORKSPACE)
+  console.log('DIR', __dirname)
+  console.log('BOOP', path.resolve(__dirname, 'src', 'public'))
+  const publicFiles = fs.readdirSync(path.resolve(__dirname, 'src', 'public'))
 
   publicFiles.map((f) =>
     fs.copyFileSync(
