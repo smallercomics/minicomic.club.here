@@ -145,7 +145,7 @@ exports.onPostBootstrap = async () => {
   console.log('ROOT', process.env.GITHUB_WORKSPACE)
   console.log('DIR', __dirname)
   console.log('BOOP', path.resolve(__dirname, 'src', 'public'))
-  const publicFiles = fs.readdirSync(process.env.GITHUB_WORKSPACE)
+  const publicFiles = fs.readdirSync(process.env.GITHUB_WORKSPACE, 'src')
 
   console.log(publicFiles)
   // publicFiles.map((f) =>
