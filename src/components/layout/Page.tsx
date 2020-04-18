@@ -153,10 +153,15 @@ const PageLayout: FunctionComponent = ({ children }) => (
             </FooterNav>
             <P>
               We'd love to see where <em>you</em> are -{' '}
-              <LINK to="/send">send us a comic?</LINK>
+              <A href="https://airtable.com/shrzvVHfAdtlSdQ9h">
+                send us a comic?
+              </A>
             </P>
             <S>
-              A minicomic.club project, all artwork &copy; respective artists.
+              A <strong>minicomic.club</strong> project, all artwork &copy;
+              respective artists.
+              <br />
+              <A href="https://twitter.com/smallercomics">@smallercomics</A>
             </S>
           </StackWithMobilePadding>
         </InnerWrap>
