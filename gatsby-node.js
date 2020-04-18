@@ -142,13 +142,10 @@ exports.createPages = async ({ graphql, actions }) => {
 }
 
 exports.onPostBootstrap = async () => {
-  const publicFiles = fs.readdirSync(path.resolve('src/public'))
+  const publicFiles = fs.readdirSync(path.resolve(__dirname, 'src', 'static'))
 
   publicFiles.map((f) =>
-    fs.copyFileSync(
-      path.resolve(`src/public/${f}`),
-      path.resolve(`public/${f}`)
-    )
+    fs.copyFileSync(path.resolve('src', 'static', f), path.resolve('public', f))
   )
 }
 
